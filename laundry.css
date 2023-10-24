@@ -14,16 +14,25 @@ body{
 }
 
 #timeSlotField{
-    display: grid;
-    grid-template-columns: 100px repeat(13,1fr);
+    display:flex;
+    flex-direction: column;
     background-color: white;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     position:relative;
     z-index: 1;
-    width:60%;
+    width:70%;
     height:600px;
+    overflow: auto;
+    
+}
+
+#gridWork{
+    display: grid;
+    grid-template-columns: 100px repeat(13,1fr);
+    column-gap: 7px;
+    grid-gap:10px;
 }
 
 
@@ -31,6 +40,27 @@ h1{
     font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:cadetblue;
     font-size: 5rem;
+}
+
+#menu{
+    margin: 0px;
+    margin-left:20px;
+    padding: 0px;
+    display: inline-flex;
+    height: 40px;
+    width:40px;
+    justify-content: left;
+}
+
+#topBar{
+    display: flex;
+    justify-content: space-between;
+}
+
+#currTime{
+    font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
 }
 
 
@@ -46,5 +76,10 @@ h1{
 #timeSlot{
     border: 1px solid #ddd;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
+    display: inline-grid;
+    justify-content: center;
+    align-content: center;
+    font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
 }
