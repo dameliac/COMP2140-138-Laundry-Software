@@ -1,0 +1,44 @@
+body{
+    display: flex;
+    flex-direction: column;
+    background-image:url(blue-curve-background/rm222batch2-mind-03.jpg);
+    
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    margin:0;
+    padding:0;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#timeSlotField{
+    display: flex;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    position:relative;
+    z-index: 1;
+    width:60%;
+    height:600px;
+    
+    
+}
+
+h1{
+    font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:cadetblue;
+    font-size: 5rem;
+}
+
+
+
+#machine{
+
+}
+
+#timeSlot{
+
+}
