@@ -14,7 +14,8 @@ body{
 }
 
 #timeSlotField{
-    display: flex;
+    display: grid;
+    grid-template-columns: 100px repeat(13,1fr);
     background-color: white;
     padding: 20px;
     border-radius: 15px;
@@ -23,9 +24,8 @@ body{
     z-index: 1;
     width:60%;
     height:600px;
-    
-    
 }
+
 
 h1{
     font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -36,9 +36,15 @@ h1{
 
 
 #machine{
-
+    height:100px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 #timeSlot{
-
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
 }
