@@ -2,7 +2,6 @@ body{
     display: flex;
     flex-direction: column;
     background-image:url(blue-curve-background/rm222batch2-mind-03.jpg);
-    
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -36,6 +35,10 @@ body{
 }
 
 
+span{
+    font-family: "Lilita One";
+}
+
 h1{
     font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:cadetblue;
@@ -50,6 +53,8 @@ h1{
     height: 40px;
     width:40px;
     justify-content: left;
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 #topBar{
@@ -63,17 +68,39 @@ h1{
     padding: 0px;
 }
 
+#sidebar{
+    position:absolute;
+    top: 0;
+    width:250px;
+    border-radius: 15px;
+    left: -300px;
+    height: 211%;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+    z-index: 1;
+    transition:left 0.3s;
+    background-color: white;
+}
 
+
+#close{
+    cursor:pointer;
+    margin-right: auto;
+    height: 40px;
+    width: 40px;
+
+}
 
 #machine{
     height:100px;
     display:flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     
 }
 
-#timeSlot{
+
+.timeSlot{
     border: 1px solid #ddd;
     text-align: center;
     padding: 5px;
@@ -81,5 +108,19 @@ h1{
     justify-content: center;
     align-content: center;
     font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}
+
+.timeSlot.selected{
+    background-color: cadetblue;
+    color: white;
     
+}
+
+.block{
+    display:inline-block;
+    margin: 0px;
+    padding: 0px;
+    align-content: center;
+    justify-content: center;
 }
