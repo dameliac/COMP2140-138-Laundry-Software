@@ -11,11 +11,13 @@
     <title>138 Dorm Laundry System</title>
 </head>
 <body>
-    <div id="loginMenu">
-        <h1>Sign In</h1>
-            <input type="text" name="userName" class="entry" placeholder="Username">
-            <input type="text" name="password" class="entry" placeholder="Password">
-        <button id="login" type="submit">Sign In</button>
-    </div>
+    <form method="post" action="login.php">
+        <div id="loginMenu">
+            <h1>Sign In</h1>
+                <input type="text" name="userName" class="entry" placeholder="Username">
+                <input type="password" name="password" class="entry" placeholder="Password">
+            <button id="login" type="submit">Sign In</button>
+        </div>
+    </form>
 </body>
 </html>
