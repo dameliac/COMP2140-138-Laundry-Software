@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:wght@600&family=Roboto:ital@0;1&display=swap" rel="stylesheet">
     <title>138 Dorm Laundry System</title>
+
 </head>
 <body>
     <form method="post" action="login.php">
@@ -16,8 +17,23 @@
             <h1>Sign In</h1>
                 <input type="text" name="userName" class="entry" placeholder="Username">
                 <input type="password" name="password" class="entry" placeholder="Password">
-            <button id="login" type="submit">Sign In</button>
+            <button id="login" name="submit" type="submit">Sign In</button>
         </div>
     </form>
+    <?php
+    session_start();
+    if (isset($_SESSION['passwordWrongs'])){
+        if ($_SESSION['passwordWrongs'] == true){
+            echo "<script> alert('Incorrect Password'); </script>";
+            $_SESSION['passwordWrongs'] = false;
+        }
+    }
+    if (isset($_SESSION['userWrongs'])){
+        if ($_SESSION['userWrongs'] == true){
+            echo "<script> alert('Incorrect Username'); </script>";
+            $_SESSION['userWrongs'] = false;
+        }
+    }
+    ?>
 </body>
 </html>
