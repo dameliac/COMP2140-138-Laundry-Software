@@ -27,6 +27,8 @@ if (isset($_POST['submit'])) {
                 $query->fetch();
                 //verify password entered to password stored -_-
                 if (password_verify($password,$storedPassword)){
+                    session_start();
+                    $_SESSION['userName'] = $username; 
                     header("Location: base.html");
                     exit();
                 }

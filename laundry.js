@@ -3,6 +3,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const menu = document.getElementById("menu");
     const side = document.getElementById("sidebar")
     const close = document.getElementById("close")
+    const menuItems = document.querySelectorAll(".sideLinks");
+    let currLocation = window.location.pathname;
+    
+    console.log(currLocation);
+    
+    if(currLocation == "/base.html"){
+        menuItems[0].classList.toggle('selected');
+    }
 
     function slideBar(){
         side.style.left = "0";
