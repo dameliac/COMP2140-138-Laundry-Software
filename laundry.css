@@ -46,7 +46,6 @@ body{
     height:30px;
     text-decoration: none;
     font-size: 1.2em;
-    color:black;
     padding:22px;
     font-family:"Lilita One";
     transition: background-color 1.0s ease;
@@ -68,9 +67,8 @@ body{
     justify-self: center;
 }
 
-.sideLinks.selected{
-    color:white;
-    background-color: cadetblue;
+a{
+    color:black;
 }
 
 #gridWork{
@@ -125,9 +123,11 @@ h1{
     z-index: 1;
     transition:left 0.3s;
     background-color: white;
+    color:black;
     display: grid;
     grid-template-rows: 80px repeat(8,50px);
     padding: 0px;
+    gap: 5px;
 }
 
 
@@ -172,4 +172,13 @@ h1{
     padding: 0px;
     align-content: center;
     justify-content: center;
+}
+
+.sideLinks.selected{
+    color:white;
+    background-color: cadetblue;
+}
+
+.selected{
+    color:white;
 }
