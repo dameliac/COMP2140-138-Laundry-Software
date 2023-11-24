@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuItems = document.querySelectorAll(".sideLinks");
     const menuItem = document.querySelectorAll(".sideLinks a")
     const menuList = new XMLHttpRequest();
-    let currLocation = window.location.pathname;
+    let currLocation = window.location.pathname
     let menuItemer;
     let menuItemers;
     let sider;
@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 menuItemers = document.querySelectorAll(".sideLinks a");
                 closers = document.getElementById("close");
                 sider = document.getElementById("sidebar");
-                if(currLocation == "/base.html"){
+                if(currLocation == "/groupproj/COMP2140-138-Laundry-Software/base.html"){
                     menuItemer[0].classList.toggle('selected');
-                    menuItemers[0].classList.toggle('selected')
+                    menuItemers[0].classList.toggle('selected');
                 }            
                 function closer(){
                     sider.style.left ="-300px";
