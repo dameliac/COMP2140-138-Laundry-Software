@@ -5,25 +5,52 @@ document.addEventListener("DOMContentLoaded", function() {
     const close = document.getElementById("close")
     const menuItems = document.querySelectorAll(".sideLinks");
     const menuItem = document.querySelectorAll(".sideLinks a")
+    const menuList = new XMLHttpRequest();
     let currLocation = window.location.pathname;
+    let menuItemer;
+    let menuItemers;
+    let sider;
     
     
-    if(currLocation == "/base.html"){
-        menuItems[0].classList.toggle('selected');
-        menuItem[0].classList.toggle('selected')
+    function menuLister(){
+        if (menuList.readyState === XMLHttpRequest.DONE){
+            if (menuList.status === 200){
+                let menuItemz = menuList.responseText;
+                side.innerHTML = menuItemz; 
+                menuItemer = document.querySelectorAll(".sideLinks");
+                menuItemers = document.querySelectorAll(".sideLinks a");
+                closers = document.getElementById("close");
+                sider = document.getElementById("sidebar");
+                if(currLocation == "/base.html"){
+                    menuItemer[0].classList.toggle('selected');
+                    menuItemers[0].classList.toggle('selected')
+                }            
+                function closer(){
+                    sider.style.left ="-300px";
+                }
+                closers.addEventListener("click",closer);
+            }
+            else{
+                alert("A mistake was made with the code.");
+            }
+        }
     }
+
+    menuList.onreadystatechange = menuLister;
+    menuList.open("GET", "userBind.php", true);
+    menuList.send();
+
+
 
     function slideBar(){
         side.style.left = "0";
     }
 
-    function closer(){
-        side.style.left ="-300px";
-    }
+
 
     menu.addEventListener("click",slideBar)
 
-    close.addEventListener("click",closer)
+
     timeSlots.forEach( slot => {
         slot.addEventListener("click",function(){
             this.classList.toggle('selected');
