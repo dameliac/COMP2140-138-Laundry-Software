@@ -15,7 +15,6 @@ body{
 #timeSlotField{
     display:flex;
     flex-direction: column;
-    background-color: white;
     padding: 0px;
     border-radius: 1px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -151,6 +150,8 @@ h1{
 
 .timeSlot{
     border: 1px solid #ddd;
+    background-color: white;
+    border-radius:5px;
     text-align: center;
     padding: 5px;
     display: inline-grid;
