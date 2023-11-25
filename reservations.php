@@ -32,10 +32,13 @@ if ($query->execute()) {
         $timeslot = sprintf('%02d:00:00', $hour);
         $machineKey = "Machine $machine";
         $isSelected = isset($reservations[$machineKey][$timeslot]);
+        date_default_timezone_set('America/New_York');
+        $currentTime = date('H:00:00');
+        $isUnavailable = ($timeslot < $currentTime || $hour == date('H'));
         ?>
-        <!--Set selected if userID is set in database and convert 24 hour time to 12 hour -->
-        <div class="timeSlot<?=$isSelected ? ' selected' : ''?>">
-            <?=$hour % 12 ?: 12?>:00 <?=$hour < 12 ? 'AM' : 'PM'?>
+        <!-- Set selected if userID is set in the database and add class for unavailable timeslots if current time passes it-->
+        <div class="timeSlot<?= $isSelected ? ' selected' : '' ?><?= $isUnavailable ? ' unavailable' : '' ?>">
+            <?= $hour % 12 ?: 12 ?>:00 <?= $hour < 12 ? 'AM' : 'PM' ?>
         </div>
     <?php endfor; ?>
 <?php endfor; ?>

@@ -11,19 +11,22 @@
     <script src="maint.js"></script>
 </head>
 <body>
-    <h1>138 Dorm Laundry System</h1>
+    <div id="maintenanceBody">
+        <h1>138 Dorm Laundry System</h1>
 
-    <button onclick="openMaintenanceForm()">Request Maintenance</button>
-    <div id="maintenance-form">
-        <h2>Maintenance Request Form</h2>
-        <form id="requestForm" onsubmit="submitForm(); return false;">
-            <label for="issue">Describe the issue:</label>
-            <textarea id="issue" name="issue" rows="4" required></textarea>
-            <br>
-            <button type="submit">Submit Request</button>
-        </form>
-        <p id="confirmationMessage" style="display: none;">Request was submitted!</p>
+        <button onclick="openMaintenanceForm()">Request Maintenance</button>
+        <div id="maintenance-form">
+            <h2>Maintenance Request Form</h2>
+            <form id="requestForm" onsubmit="submitForm(); return false;">
+                <label for="issue">Describe the issue:</label>
+                <textarea id="issue" name="issue" rows="4" required></textarea>
+                <br>
+                <button type="submit">Submit Request</button>
+            </form>
+            <p id="confirmationMessage" style="display: none;">Request was submitted!</p>
+        </div>
     </div>
+    
 
 </body>
 </html>

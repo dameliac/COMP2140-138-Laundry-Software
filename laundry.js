@@ -91,6 +91,9 @@ document.addEventListener("DOMContentLoaded", function() {
                                     else if (scheduler =="unavailable"){
                                         alert("Timeslot Not Available");
                                     }
+                                    else if(scheduler="limited"){
+                                        alert("Timeslot Reservation Limit Reached")
+                                    }
                                     else{
                                         console.log(scheduler);
                                         alert("Failed To Reserve Timselot.");

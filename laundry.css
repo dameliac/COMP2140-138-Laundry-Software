@@ -167,6 +167,12 @@ h1{
     
 }
 
+.timeSlot.unavailable{
+    pointer-events: none;
+    background-color: gray;
+    color: white;
+}
+
 .block{
     display:inline-block;
     margin: 0px;
@@ -186,4 +192,13 @@ h1{
 
 #dynamic{
     min-height: 60vw;
+}
+
+#dynamic #maintenanceBody{
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    padding:0;
+    align-items: center;
+    justify-content: center;
 }

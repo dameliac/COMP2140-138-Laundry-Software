@@ -12,6 +12,16 @@ body{
 
 }
 
+#maintenanceBody{
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    padding:0;
+    align-items: center;
+    justify-content: center;
+
+}
+
 h1{
     font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:cadetblue;
