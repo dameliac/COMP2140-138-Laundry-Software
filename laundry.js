@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const timeSlots = document.querySelectorAll(".timeSlot");
     const menu = document.getElementById("menu");
     const side = document.getElementById("sidebar")
     const close = document.getElementById("close")
     const menuItems = document.querySelectorAll(".sideLinks");
     const menuItem = document.querySelectorAll(".sideLinks a")
     const menuList = new XMLHttpRequest();
+    const schedule = new XMLHttpRequest();
+    const dynamic = document.getElementById("dynamic");
     let currLocation = window.location.pathname
     let menuItemer;
     let menuItemers;
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 menuItemers = document.querySelectorAll(".sideLinks a");
                 closers = document.getElementById("close");
                 sider = document.getElementById("sidebar");
-                if(currLocation == "/groupproj/COMP2140-138-Laundry-Software/base.html"){
+                if(currLocation.includes("base.html")){
                     menuItemer[0].classList.toggle('selected');
                     menuItemers[0].classList.toggle('selected');
                 }            
@@ -36,9 +37,63 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    function scheduleDynam(){
+        if (schedule.readyState === XMLHttpRequest.DONE){
+            if (schedule.status === 200){
+                let scheduletimes = schedule.responseText;
+                dynamic.innerHTML = scheduletimes;
+                const timeSlots = document.querySelectorAll(".timeSlot");
+                timeSlots.forEach( slot => {
+                    slot.addEventListener("click",function(){
+                        const fixed = this;
+                        let timeSlot = this.textContent.trim();
+                        //Find the span element to determine which machine in the database's timeslot
+                        let machineFinder = findMachineElement(this);
+                        let machine = machineFinder.querySelector('span').textContent;
+                        let timeRequest = new XMLHttpRequest();
+                        timeRequest.open('POST','timeSlot.php',true);
+                        timeRequest.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                        timeRequest.onreadystatechange = function(){
+                            if (timeRequest.readyState === XMLHttpRequest.DONE){
+                                if (timeRequest.status===200){
+                                    let scheduler = timeRequest.responseText;
+                                    if (scheduler=="success"){
+                                        alert("Timeslot Reserved")
+                                        fixed.classList.add('selected');
+                                    }
+                                    else if (scheduler =="unavailable"){
+                                        alert("Timeslot Not Available");
+                                    }
+                                    else{
+                                        console.log(scheduler);
+                                        alert("Failed To Reserve Timselot.");
+                                    }
+                                }
+                                else{
+                                    alert("Error Occured");
+                                }
+                            }
+
+                        };
+
+                        let data = "timeslot=" + encodeURIComponent(timeSlot) +"&machine=" + encodeURIComponent(machine);
+                        timeRequest.send(data);
+                        
+
+                    })    
+                });
+            }
+        }
+    }
+
     menuList.onreadystatechange = menuLister;
     menuList.open("GET", "userBind.php", true);
     menuList.send();
+
+
+    schedule.onreadystatechange = scheduleDynam;
+    schedule.open("GET","reservations.php",true);
+    schedule.send();
 
 
 
@@ -50,14 +105,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     menu.addEventListener("click",slideBar)
 
+    function findMachineElement(element) {
+    while (element && !element.querySelector('span')) {
+        element = element.previousElementSibling;
+    }
+    return element;}
 
-    timeSlots.forEach( slot => {
-        slot.addEventListener("click",function(){
-            this.classList.toggle('selected');
-            
-            //const selectedSlots = Array.from(timeSlots).filter(slot => slot.classList.contains('selected')).map()
-        })    
-    });
+
+
 });
 
 

@@ -21,6 +21,7 @@ if ($query) {
         }
     }
 }
+$mysqli->close();
 ?>
 
 <img src="closeButton.png" alt="Close Button" id="close">
