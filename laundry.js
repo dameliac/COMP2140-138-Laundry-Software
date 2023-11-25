@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const menu = document.getElementById("menu");
     const side = document.getElementById("sidebar")
     const close = document.getElementById("close")
-    const menuItems = document.querySelectorAll(".sideLinks");
     const menuItem = document.querySelectorAll(".sideLinks a")
     const menuList = new XMLHttpRequest();
     const schedule = new XMLHttpRequest();
@@ -18,8 +17,31 @@ document.addEventListener("DOMContentLoaded", function() {
             if (menuList.status === 200){
                 let menuItemz = menuList.responseText;
                 side.innerHTML = menuItemz; 
+
                 menuItemer = document.querySelectorAll(".sideLinks");
                 menuItemers = document.querySelectorAll(".sideLinks a");
+
+                menuItemers[0].addEventListener("click",function(event){
+                    event.preventDefault()
+                    schedule.onreadystatechange = scheduleDynam;
+                    schedule.open("GET","reservations.php",true);
+                    schedule.send();
+                    menuItemers.forEach(item => item.classList.remove('selected'));
+                    menuItemer.forEach(item => item.classList.remove('selected'));
+                    menuItemer[0].classList.toggle("selected");
+                    menuItemers[0].classList.toggle("selected");
+
+                })
+
+                menuItemers[3].addEventListener("click",function(event){
+                    event.preventDefault();
+                    getPage("maintenance.html");
+                    menuItemers.forEach(item => item.classList.remove('selected'));
+                    menuItemer.forEach(item => item.classList.remove('selected'));
+                    menuItemer[3].classList.toggle("selected");
+                    menuItemers[3].classList.toggle("selected");
+                })
+
                 closers = document.getElementById("close");
                 sider = document.getElementById("sidebar");
                 if(currLocation.includes("base.html")){
@@ -42,17 +64,21 @@ document.addEventListener("DOMContentLoaded", function() {
             if (schedule.status === 200){
                 let scheduletimes = schedule.responseText;
                 dynamic.innerHTML = scheduletimes;
+
                 const timeSlots = document.querySelectorAll(".timeSlot");
                 timeSlots.forEach( slot => {
                     slot.addEventListener("click",function(){
                         const fixed = this;
                         let timeSlot = this.textContent.trim();
+                        
                         //Find the span element to determine which machine in the database's timeslot
                         let machineFinder = findMachineElement(this);
                         let machine = machineFinder.querySelector('span').textContent;
+                        
                         let timeRequest = new XMLHttpRequest();
                         timeRequest.open('POST','timeSlot.php',true);
                         timeRequest.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                        
                         timeRequest.onreadystatechange = function(){
                             if (timeRequest.readyState === XMLHttpRequest.DONE){
                                 if (timeRequest.status===200){
@@ -61,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                         alert("Timeslot Reserved")
                                         fixed.classList.add('selected');
                                     }
+
                                     else if (scheduler =="unavailable"){
                                         alert("Timeslot Not Available");
                                     }
@@ -105,11 +132,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     menu.addEventListener("click",slideBar)
 
+    function getPage(url){
+        fetch(url)
+            .then(response => response.text())
+            .then(html=>{
+                document.getElementById('dynamic').innerHTML = html;
+            })
+    }
+
+
     function findMachineElement(element) {
     while (element && !element.querySelector('span')) {
         element = element.previousElementSibling;
     }
-    return element;}
+    return element;
+    }
 
 
 

@@ -183,3 +183,7 @@ h1{
 .selected{
     color:white;
 }
+
+#dynamic{
+    min-height: 60vw;
+}
