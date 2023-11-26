@@ -18,6 +18,12 @@ if ($query->execute()) {
     }
 }
 
+function removeUnavailable($machine, $timeslot) {
+    global $mysqli;
+    $updateQuery = $mysqli->prepare("UPDATE reservations SET user_name = NULL WHERE machine = ? AND timeslot = ?");
+    $updateQuery->bind_param("ss", $machine, $timeslot);
+    return $updateQuery->execute();
+}
 
 ?>
 
@@ -40,6 +46,11 @@ if ($query->execute()) {
         <div class="timeSlot<?= $isSelected ? ' selected' : '' ?><?= $isUnavailable ? ' unavailable' : '' ?>">
             <?= $hour % 12 ?: 12 ?>:00 <?= $hour < 12 ? 'AM' : 'PM' ?>
         </div>
+        <?php
+        if ($isUnavailable && $isSelected) {
+            removeUnavailable($machineKey, $timeslot);
+        }
+        ?>
     <?php endfor; ?>
 <?php endfor; ?>
 </div>

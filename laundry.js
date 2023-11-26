@@ -20,27 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 menuItemer = document.querySelectorAll(".sideLinks");
                 menuItemers = document.querySelectorAll(".sideLinks a");
-
-                menuItemers[0].addEventListener("click",function(event){
-                    event.preventDefault()
-                    schedule.onreadystatechange = scheduleDynam;
-                    schedule.open("GET","reservations.php",true);
-                    schedule.send();
-                    menuItemers.forEach(item => item.classList.remove('selected'));
-                    menuItemer.forEach(item => item.classList.remove('selected'));
-                    menuItemer[0].classList.toggle("selected");
-                    menuItemers[0].classList.toggle("selected");
-
-                })
-
-                menuItemers[3].addEventListener("click",function(event){
-                    event.preventDefault();
-                    getPage("maintenance.html");
-                    menuItemers.forEach(item => item.classList.remove('selected'));
-                    menuItemer.forEach(item => item.classList.remove('selected'));
-                    menuItemer[3].classList.toggle("selected");
-                    menuItemers[3].classList.toggle("selected");
-                })
+                
+                menuItemers.forEach((item, index) => {
+                    item.addEventListener("click", function (event) {
+                      event.preventDefault();
+                      handleMenuItemClick(item,index);
+                    });
+                  });
 
                 closers = document.getElementById("close");
                 sider = document.getElementById("sidebar");
@@ -151,7 +137,66 @@ document.addEventListener("DOMContentLoaded", function() {
     return element;
     }
 
+    function handleMenuItemClick(clickedItem,selection) {
+        const menuItemer = document.querySelectorAll(".sideLinks");
+        menuItemer.forEach((item) => item.classList.remove("selected"));
+        menuItemer.forEach((item) => item.children[0].classList.remove("selected"));
+        clickedItem.parentElement.classList.add("selected");
+        clickedItem.classList.add("selected");
+ 
+        switch (menuItemer[0].children[0].textContent) {
+          case "Reservation Schedule":
+            handleResidentAction(selection);
+            break;
+          case "Inventory Management":
+            handleStaffAction(selection);
+            break;
+          default:
+            handleMaintenanceAction(selection);
+            break;
+        }
+      }
 
+      function handleResidentAction(action) {
+        switch (action) {
+          case 0:
+            schedule.onreadystatechange = scheduleDynam;
+            schedule.open("GET","reservations.php",true);
+            schedule.send();
+            break;
+          case 1:
+            getPage("waitList.html");
+            break;
+          case 2:
+            getPage("ticket.html");
+            break;
+          case 3:
+            getPage("maintenance.html");
+            break;
+        }
+      }
+
+      function handleMaintenanceAction(action){
+        switch(action){
+            case 0:
+                break;
+            case 1:
+                break;
+        }
+      }
+
+      function handleStaffAction(action){
+        switch(action){
+            case 0:
+                break;
+            case 1:
+                getPage("maintenance.html");
+                break;
+            case 2:
+                break;
+        }
+      }
+      
 
 });
 
