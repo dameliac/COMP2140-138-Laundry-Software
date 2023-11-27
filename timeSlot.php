@@ -9,6 +9,13 @@ if ($mysqli->connect_error){
 }
 
 $reservations = array();
+
+$selectedDay = date("w");
+
+if (isset($_POST['selectedDay'])) {
+    $selectedDay = $_POST['selectedDay'];
+}
+
 if (isset($_POST['timeslot'])){
     $timeslot12 = $_POST['timeslot'];
     $machinery = $_POST['machine']; 
@@ -16,17 +23,20 @@ if (isset($_POST['timeslot'])){
     $timeslot24 = date('H:i:s',$timestamp);
     
     
-    $query = $mysqli->prepare("SELECT user_name FROM reservations WHERE timeslot = ? AND machine = ?");
-    $query->bind_param("ss",$timeslot24,$machinery);
+    $query = $mysqli->prepare("SELECT user_name FROM reservations WHERE timeslot = ? AND machine = ? AND day = ?");
+    $query->bind_param("sss",$timeslot24,$machinery,$selectedDay);
+
     if ($query->execute()) {
         $result = $query->get_result();
         $row = $result->fetch_assoc();
         $query->close();
+
         if ($row != null && $row["user_name"] == null){
             $username = $_SESSION['userName'];
+
             if(checkLimit($username)){
-                $updateQuery = $mysqli->prepare("UPDATE reservations SET user_name = ? WHERE machine = ? AND timeslot = ?");
-                $updateQuery->bind_param("sss",$username,$machinery,$timeslot24);
+                $updateQuery = $mysqli->prepare("UPDATE reservations SET user_name = ? WHERE machine = ? AND timeslot = ? AND day = ?");
+                $updateQuery->bind_param("ssss",$username,$machinery,$timeslot24,$selectedDay);
                 
                 if ($updateQuery->execute()){
                     echo "success";
