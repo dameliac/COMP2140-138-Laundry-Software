@@ -80,10 +80,6 @@ INSERT INTO `machine status` (`id`, `machineName`, `machineStatus`) VALUES
 -- Table structure for table `MAintenance`
 --
 
-CREATE DATABASE maintenance_requests;
-
-USE maintenance_requests;
-
 CREATE TABLE requests (
     id INT AUTO_INCREMENT PRIMARY KEY,
     issue TEXT NOT NULL,
