@@ -1,4 +1,3 @@
-
     function machineStatusChange(event) {
         event.preventDefault(); 
         fetch('status.php', {
@@ -26,9 +25,6 @@
             commentSection.style.display = "none";
         }
         })
-        .catch(error => {
-        console.error('Error:', error);
-        });
     }
 
 

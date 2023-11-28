@@ -12,7 +12,6 @@ if (isset($_POST['machine'])){
     $statusQuery->bind_param("s",$machine);
 
     if ($statusQuery->execute()){
-        var_dump($machine);
         $result = $statusQuery->get_result();
         $row = $result->fetch_assoc();
         $status = $row["machineStatus"];
