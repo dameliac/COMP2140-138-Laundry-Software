@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
             case 0:
                 break;
             case 1:
+                getPage("machineStatus.php");
                 break;
         }
       }

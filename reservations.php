@@ -34,6 +34,24 @@ function removeUnavailable($machine, $timeslot, $day) {
     return $updateQuery->execute();
 }
 
+function getMachineStatus($machine) {
+    global $mysqli;
+    $statusQuery = $mysqli->prepare("SELECT machineStatus FROM `machine status` WHERE machineName = ?");
+    $statusQuery->bind_param("s", $machine);
+    if ($statusQuery->execute()) {
+        $statusResult = $statusQuery->get_result();
+        $row = $statusResult->fetch_assoc();
+        return $row['machineStatus'];
+    }
+}
+function reduceAssignment($user) {
+        global $mysqli;
+        $updateQuery = $mysqli->prepare("UPDATE dorm SET assignments = assignments - 1 WHERE username = ? ");
+        $updateQuery->bind_param("s", $user);
+        return $updateQuery->execute();
+} 
+
+
 ?>
 
 <div id="daySelector">
@@ -51,7 +69,8 @@ function removeUnavailable($machine, $timeslot, $day) {
 <div id="gridWork">
 <?php for($machine = 1; $machine <= 10; $machine++):?>
     <div class="machine">
-        <img src="washing.png" alt="Laundry washing" id="machine">
+        <?php $isAvailable = (getMachineStatus("Machine $machine")==1)?>
+        <img src="<?=$isAvailable ? "washing.png" : "washingred.png"?>" alt="Laundry washing" id="machine">
         <span>Machine <?=$machine;?></span>
     </div>
     <?php for($hour = 8; $hour <= 20; $hour++):?>
@@ -60,7 +79,7 @@ function removeUnavailable($machine, $timeslot, $day) {
         $machineKey = "Machine $machine";
         $isSelected = isset($reservations[$machineKey][$selectedDay][$timeslot]);
         $currentTime = date('H:00:00');
-        $isUnavailable = (($timeslot < $currentTime && $selectedDay == date("w")) || ($hour == date('H') && $selectedDay == date("w")) || $selectedDay < date("w"));
+        $isUnavailable = (($timeslot < $currentTime && $selectedDay == date("w")) || ($hour == date('H') && $selectedDay == date("w")) || $selectedDay < date("w") || (getMachineStatus($machineKey)== 0));
         ?>
         <!-- Set selected if userID is set in the database and add class for unavailable timeslots if current time passes it-->
         <div class="timeSlot<?= $isSelected ? ' selected' : '' ?><?= $isUnavailable ? ' unavailable' : '' ?>">
@@ -69,6 +88,7 @@ function removeUnavailable($machine, $timeslot, $day) {
         <?php
 
         if ($isUnavailable && $isSelected) {
+            reduceAssignment($reservations[$machineKey][$selectedDay][$timeslot]);
             removeUnavailable($machineKey, $timeslot,$selectedDay);
         }
         

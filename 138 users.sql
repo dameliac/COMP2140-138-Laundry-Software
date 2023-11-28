@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 06:56 AM
+-- Generation Time: Nov 28, 2023 at 07:00 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,9 +44,37 @@ CREATE TABLE `dorm` (
 --
 
 INSERT INTO `dorm` (`username`, `password`, `firstname`, `lastname`, `usertype`, `assignments`) VALUES
-('123', '$2y$10$1ILtmY.cEKFRAwHR97SYWeLvB2gC70oJTiNDVuhWaS9edo7OgJK6y', 'Josh', 'Johnson', 'resident', 2),
+('123', '$2y$10$1ILtmY.cEKFRAwHR97SYWeLvB2gC70oJTiNDVuhWaS9edo7OgJK6y', 'Josh', 'Johnson', 'resident', 1),
 ('789', '$2y$10$2S9Q0e7YrzCNBO2OTcDMHuJf2rJQUsKM3mGT6xJJMR5o/m.CKnqfi', 'Julio', 'Estabon', 'staff', 0),
 ('456', '$2y$10$tX39EIdwLzWa5bNNK728mOn14n8adf/YQ891PF.e0yJPCnF27UPg.', 'Senku', 'Ishigami', 'maintenance', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `machine status`
+--
+
+CREATE TABLE `machine status` (
+  `id` int(11) NOT NULL,
+  `machineName` varchar(50) NOT NULL,
+  `machineStatus` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `machine status`
+--
+
+INSERT INTO `machine status` (`id`, `machineName`, `machineStatus`) VALUES
+(1, 'Machine 1', 1),
+(2, 'Machine 2', 1),
+(3, 'Machine 3', 1),
+(4, 'Machine 4', 1),
+(5, 'Machine 5', 1),
+(6, 'Machine 6', 1),
+(7, 'Machine 7', 1),
+(8, 'Machine 8', 1),
+(9, 'Machine 9', 1),
+(10, 'Machine 10', 1);
 
 -- --------------------------------------------------------
 
@@ -983,6 +1011,12 @@ INSERT INTO `reservations` (`id`, `machine`, `timeslot`, `day`, `user_name`) VAL
 --
 
 --
+-- Indexes for table `machine status`
+--
+ALTER TABLE `machine status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
@@ -993,10 +1027,16 @@ ALTER TABLE `reservations`
 --
 
 --
+-- AUTO_INCREMENT for table `machine status`
+--
+ALTER TABLE `machine status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1934;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1809;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
