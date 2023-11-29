@@ -1,3 +1,19 @@
+<?php
+session_start();
+$user = $_SESSION['userName'];
+
+$mysqli = new mysqli("localhost", "root", "", "138users");
+
+
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+$query = mysql->prepare("SELECT id, machine, day FROM reservations WHERE user_name=?");
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
