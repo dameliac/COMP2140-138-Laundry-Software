@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded",function(){
                                 let opps = cancelRequest.responseText;
                                 if (opps == "success") {
                                     triumph.classList.add('Unavailable');
-                                    alert("Cancel Worked");
+                                    alert("Reservation cancelled");
                                 }
                                 else{
                                     console.log(opps);
