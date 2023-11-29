@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
       function handleMaintenanceAction(action){
         switch(action){
             case 0:
-                getPage("maintenance.php");
+                getPage("adminM.php");
                 break;
             case 1:
                 getPage("machineStatus.php");
