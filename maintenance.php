@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="maint.css"/>
-    <script src="maint.js"></script>
 </head>
 <body>
     <div id="maintenanceBody">
