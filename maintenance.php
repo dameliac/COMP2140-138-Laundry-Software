@@ -32,7 +32,6 @@
         $submitted = false;
     }
     ?>
-
     <!-- Form for users to submit issues -->
     <form id="requestForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <label for="issue_description">Describe the issue:</label><br>
