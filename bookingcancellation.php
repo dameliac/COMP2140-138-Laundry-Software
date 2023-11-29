@@ -55,7 +55,7 @@ if ($infoQuery->execute()){
     <h1>138 Dorm Laundry System</h1>
     <h2>Booking Cancellation</h2>
     <div id="cancellationForm">
-        <?php for($picket = 0; $picket <= $number; $picket++):?>
+        <?php for($picket = 0; $picket < $number; $picket++):?>
             <div onclick="canceller(event)" class="timeSlotted selected"><?=$clock[$picket] . " " . $mech[$picket] . " " . $daysOfWeek[$week[$picket]]?></div>
         <?php endfor;?>
     </div>

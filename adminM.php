@@ -17,11 +17,15 @@
   if (file_exists($file)) {
     $submittedIssues = file_get_contents($file);
     echo "<p>Submitted Issues:</p>";
-    echo "<pre>$submittedIssues</pre>";
-  } else {
+    echo "<ul>";
+    foreach ($issuesArray as $issue) {
+        echo "<li>$issue</li>";
+    }
+    echo "</ul>";
+} else {
     echo "<p>No submitted issues yet.</p>";
-  }
-  ?>
+}
+?>
 
 </body>
 </html>

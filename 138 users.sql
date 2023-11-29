@@ -76,17 +76,6 @@ INSERT INTO `machine status` (`id`, `machineName`, `machineStatus`) VALUES
 (10, 'Machine 10', 1);
 
 -- --------------------------------------------------------
-
--- Table structure for table `MAintenance`
---
-
-CREATE TABLE requests (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    issue TEXT NOT NULL,
-    submission_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- --------------------------------------------------------
 --
 -- Table structure for table `reservations`
 --
