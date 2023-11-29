@@ -7,25 +7,19 @@
   <link rel="stylesheet" href="maint.css">
 </head>
 <body>
-
   <h2>Admin Panel - Submitted Issues</h2>
 
   <?php
   // Read and display submitted issues from the file
-  $file = 'submittedIssues.txt';
+  $file = 'submitted_issues.txt';
 
   if (file_exists($file)) {
     $submittedIssues = file_get_contents($file);
     echo "<p>Submitted Issues:</p>";
-    echo "<ul>";
-    foreach ($issuesArray as $issue) {
-        echo "<li>$issue</li>";
-    }
-    echo "</ul>";
-} else {
+    echo "<pre>$submittedIssues</pre>";
+  } else {
     echo "<p>No submitted issues yet.</p>";
-}
-?>
-
+  }
+  ?>
 </body>
 </html>
