@@ -1,0 +1,76 @@
+<?php 
+session_start();
+$user = $_SESSION['userName'];
+
+$mysqli = new mysqli("localhost", "root", "", "138users");
+
+
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+$assignmentQuery = $mysqli->prepare("SELECT assignments FROM dorm WHERE username=?");
+$assignmentQuery->bind_param("s",$user);
+
+if ($assignmentQuery->execute()){
+    $result = $assignmentQuery->get_result();
+    $row = $result->fetch_assoc();
+    $ticketNumber = $row["assignments"];
+}
+
+$machineQuery = $mysqli->prepare("SELECT id, machine, timeslot, day FROM reservations WHERE user_name = ?");
+$machineQuery->bind_param("s",$user);
+
+if ($machineQuery->execute()){
+    $result = $machineQuery->get_result();
+    $reservoir = array();
+    $dogs = array();
+    $three = array();
+    $ticketID = array();
+    $iter = 0;
+    while($rows =  $result->fetch_assoc()){
+        $reservoir[$iter] = $rows["machine"];
+        $dogs[$iter] = $rows['timeslot']; 
+        $three[$iter] = $rows['day'];
+        $ticketID[$iter] = $rows['id'];
+        $iter++;
+    }   
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket View</title>
+    <link rel="icon" type="image/logo" href="laundry logo.png">
+    <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <h1>138 DORMITORY LAUNDRY</h1>
+    <div class="ticketBox">
+        <?php for($ticket = 0; $ticket <= $ticketNumber; $ticket++):?>
+            <div class="container">
+                <h2>Queue Ticket</h2>
+                <div class = "machine">
+                    <div id="user"> 
+                        <h3 id="id">User ID: <?=$user?></h3>
+                        <h3 id = "date">Day: <?=$three[$ticket]?></h3></div>
+                        <p id="ticket"><strong>Ticket ID:</strong></p>
+                        <p id="dec1">********************************************</p>
+                        <h3 id="ticket-val">A<?=$ticketID[$ticket]?></h3>
+                        <p id="dec2">********************************************</p>
+                        <h4>Description:</h4>
+                        <p id="details"><strong>Time Slot:</strong> <?=$dogs[$ticket]?><br>
+                        <strong>Period:</strong> 60 mins<br>
+                        <strong>Service:</strong> Wash, Rinse & Dry<br>
+                        <strong>Selected Equipment:</strong> <?=$reservoir[$ticket]?></p>
+                    <p id="message">Tip: Please arrive 5 minutes prior to your scheduled time!</p>
+                </div>
+            </div> 
+        <?php endfor;?>
+    </div>
+</body>
+</html>

@@ -36,12 +36,17 @@ h2{
     padding-top: 20px;
     margin-left: 20px;
     font-size: 15px;
+    justify-content: space-evenly;
 }
 
 #date{
     margin-left: 90px;
 }
 
+
+.ticketBox{
+    display: flex;
+}
 
 
 

@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
             getPage("waitList.html");
             break;
           case 2:
-            getPage("ticket.html");
+            getPage("ticket view.php");
             break;
           case 3:
             getPage("maintenance.html");
