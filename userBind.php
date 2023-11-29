@@ -31,10 +31,10 @@ $mysqli->close();
     <div class="sideLinks"><a href="base.html">Reservation Schedule</a></div>
     <div class="sideLinks"><a href="waitlist.html">Waitlist</a></div>
     <div class="sideLinks"><a href="ticket.html">Ticket View</a></div>
-    <div class="sideLinks"><a href="maintenance.html">Maintenance Request</a></div>
+    <div class="sideLinks"><a href="maintenance.php">Maintenance Request</a></div>
 <?php elseif($usertype=="staff"):?>
     <div class="sideLinks"><a href="inventory.html">Inventory Management</a></div>
-    <div class="sideLinks"><a href="maintenance.html">Maintenance Request</a></div>
+    <div class="sideLinks"><a href="admin.php">Maintenance Request</a></div>
     <div class="sideLinks"><a href="ticket.html">Ticket Overview</a></div>
 <?php else:?>
     <div class="sideLinks"><a href="Request.html">Request Overview</a></div>
