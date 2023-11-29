@@ -62,7 +62,7 @@ body{
     width:100%;
     margin:0px;
     align-self: center;
-    padding:16px 0px;
+    padding:16px 0px;       
     justify-self: center;
 }
 
@@ -96,8 +96,9 @@ h1{
     height: 40px;
     width:40px;
     justify-content: left;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     cursor: pointer;
+    padding-bottom: 0px;
 }
 
 #topBar{
@@ -167,6 +168,12 @@ h1{
     
 }
 
+.timeSlot.unavailable{
+    pointer-events: none;
+    background-color: gray;
+    color: white;
+}
+
 .block{
     display:inline-block;
     margin: 0px;
@@ -182,4 +189,117 @@ h1{
 
 .selected{
     color:white;
+}
+
+#dynamic{
+    min-height: 60vw;
+}
+
+#dynamic #maintenanceBody{
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    padding:0;
+    align-items: center;
+    justify-content: center;
+}
+
+#daySelector{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: "Lilita One";
+    margin-bottom: 20px;
+    margin-left: 110px;
+}
+
+.days{
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 30px;
+    cursor: pointer;
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    border-color: white;
+    border-radius: 50%;
+    align-items: center;
+}
+
+.days.selected{
+    background-color: cadetblue;
+    color: white;
+    
+}
+
+.machineDisplayer .Machine{
+    margin: 10px;
+}
+
+.machineDisplayer .machine{
+    height:100px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.machineDisplay{
+    display: flex;
+    margin: 3em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.2);
+    align-items: center;
+}
+
+.machineDisplay span{
+    font-family: "Lilita One";
+}
+
+#machineSelect{
+    border-radius: 5px;
+    border-color: white;
+    background-color: white;
+    font-family: "Lilita One";
+}
+
+.machineButtons{
+    border-color: white;
+    background-color: cadetblue;
+    color: white;
+    font-family: "Lilita One";
+    align-items: center;
+    display: flex;
+    width: 100px;
+    height: 70px;
+    border-radius: 5px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.machineDisplayer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 3em;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.2);   
+}
+
+.commentSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.commentSection button{
+    background-color: white;
+    border-radius: 5px;
+    font-family: "Lilita One";
 }

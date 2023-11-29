@@ -21,6 +21,7 @@ if ($query) {
         }
     }
 }
+$mysqli->close();
 ?>
 
 <img src="closeButton.png" alt="Close Button" id="close">
@@ -37,5 +38,5 @@ if ($query) {
     <div class="sideLinks"><a href="ticket.html">Ticket Overview</a></div>
 <?php else:?>
     <div class="sideLinks"><a href="Request.html">Request Overview</a></div>
-    <div class="sideLinks"><a href="machine.html">Machine Statuses</a></div>
+    <div class="sideLinks"><a href="machineStatus.php">Machine Statuses</a></div>
 <?php endif;?>

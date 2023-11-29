@@ -3,8 +3,26 @@ function openMaintenanceForm() {
 }
 
 function submitForm() {
-    // You can add logic here to send the maintenance request to the server/database.
-    // For this example, we'll just show a confirmation message.
-    document.getElementById("requestForm").style.display = "none";
-    document.getElementById("confirmationMessage").style.display = "block";
+    const issueDescription = document.getElementById('issue').value;
+
+    fetch('/submit-request',{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({issue: issueDescription}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.sucess){
+            document.getElementById("requestForm").style.display = "none";
+            document.getElementById("confirmationMessage").style.display = "block";
+        } else{
+            console.error('Error submitting request:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error submitting request:', error);
+    })
+    
 }

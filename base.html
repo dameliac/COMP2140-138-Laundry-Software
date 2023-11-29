@@ -9,7 +9,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="laundry.css"/>
+        <script src="maint.js"></script>
         <script src="laundry.js"></script>
+        <script src="status.js"></script>
     </head>
     <body>
         <div id="timeSlotField">
@@ -17,181 +19,11 @@
                 <img src="Menu Button.png" alt="menu button" id="menu">
                 <span id="currTime"></span>
             </div>
+            <!--Information assigned to div is in userBind.php -->
             <div id="sidebar">
             </div>
-            <div id="gridWork">
-                <div class="machine">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 1</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>  
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div id="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 2</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div id="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 3</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div id="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 4</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div class="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 5</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div class="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 6</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div class="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 7</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div class="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 8</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div id="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 9</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-                <div class="washing">
-                    <img src="washing.png" alt="Laundry washing" id="machine">
-                    <span>Machine 10</span>
-                </div>
-                <div class="timeSlot"> 8:00 AM</div>
-                <div class="timeSlot"> 9:00 AM</div>
-                <div class="timeSlot"> 10:00 AM</div>
-                <div class="timeSlot"> 11:00 AM</div>
-                <div class="timeSlot"> 12:00 PM</div>
-                <div class="timeSlot"> 1:00 PM</div>
-                <div class="timeSlot"> 2:00 PM</div>
-                <div class="timeSlot"> 3:00 PM</div>
-                <div class="timeSlot"> 4:00 PM</div>
-                <div class="timeSlot"> 5:00 PM</div>
-                <div class="timeSlot"> 6:00 PM</div>
-                <div class="timeSlot"> 7:00 PM</div>
-                <div class="timeSlot"> 8:00 PM</div>
-            </div>
-            
+            <!--Assigned the currently picked menu Item information-->
+            <div id="dynamic"></div>
         </div>
     </body>
 </html>
@@ -211,7 +43,5 @@ background Attribution
 -->
 <!--Do we pretend like since it logs in with the Dorm # it assumes the correct Domr Laundry-->
 <!--Create a button for changing which phase your at.-->
-<!--Users will login using Dorm #-->
 <!--Display User Name, display user type(Maintenance, laundry staff, resident) logout, ticket display, cancel reservation, staff dashboard, inventory management,
     maintenance update, generate user Report,  -->
-    <!--Include ability to change days to reserve time slots throughout a week-->

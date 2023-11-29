@@ -1,15 +1,25 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const timeSlots = document.querySelectorAll(".timeSlot");
     const menu = document.getElementById("menu");
     const side = document.getElementById("sidebar")
     const close = document.getElementById("close")
-    const menuItems = document.querySelectorAll(".sideLinks");
     const menuItem = document.querySelectorAll(".sideLinks a")
     const menuList = new XMLHttpRequest();
-    let currLocation = window.location.pathname;
+    const schedule = new XMLHttpRequest();
+    const dynamic = document.getElementById("dynamic");
+    let currLocation = window.location.pathname
     let menuItemer;
     let menuItemers;
     let sider;
+    const daysOfWeek = {
+        "Sunday": 0,
+        "Monday": 1,
+        "Tuesday": 2,
+        "Wednesday": 3,
+        "Thursday": 4,
+        "Friday": 5,
+        "Saturday": 6
+      };
+      
     
     
     function menuLister(){
@@ -17,13 +27,22 @@ document.addEventListener("DOMContentLoaded", function() {
             if (menuList.status === 200){
                 let menuItemz = menuList.responseText;
                 side.innerHTML = menuItemz; 
+
                 menuItemer = document.querySelectorAll(".sideLinks");
                 menuItemers = document.querySelectorAll(".sideLinks a");
+                
+                menuItemers.forEach((item, index) => {
+                    item.addEventListener("click", function (event) {
+                      event.preventDefault();
+                      handleMenuItemClick(item,index);
+                    });
+                  });
+
                 closers = document.getElementById("close");
                 sider = document.getElementById("sidebar");
-                if(currLocation == "/base.html"){
+                if(currLocation.includes("base.html")){
                     menuItemer[0].classList.toggle('selected');
-                    menuItemers[0].classList.toggle('selected')
+                    menuItemers[0].classList.toggle('selected');
                 }            
                 function closer(){
                     sider.style.left ="-300px";
@@ -36,9 +55,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    function scheduleDynam(){
+        if (schedule.readyState === XMLHttpRequest.DONE){
+            if (schedule.status === 200){
+                let scheduletimes = schedule.responseText;
+                dynamic.innerHTML = scheduletimes;
+                setupEventListeners();
+            }
+        }
+    }
+
     menuList.onreadystatechange = menuLister;
     menuList.open("GET", "userBind.php", true);
     menuList.send();
+
+
+    schedule.onreadystatechange = scheduleDynam;
+    schedule.open("GET","reservations.php",true);
+    schedule.send();
 
 
 
@@ -50,14 +84,151 @@ document.addEventListener("DOMContentLoaded", function() {
 
     menu.addEventListener("click",slideBar)
 
+    function getPage(url){
+        fetch(url)
+            .then(response => response.text())
+            .then(html=>{
+                document.getElementById('dynamic').innerHTML = html;
+            })
+    }
 
-    timeSlots.forEach( slot => {
-        slot.addEventListener("click",function(){
-            this.classList.toggle('selected');
-            
-            //const selectedSlots = Array.from(timeSlots).filter(slot => slot.classList.contains('selected')).map()
-        })    
-    });
+
+    function findMachineElement(element) {
+    while (element && !element.querySelector('span')) {
+        element = element.previousElementSibling;
+    }
+    return element;
+    }
+
+    function handleMenuItemClick(clickedItem,selection) {
+        const menuItemer = document.querySelectorAll(".sideLinks");
+        menuItemer.forEach((item) => item.classList.remove("selected"));
+        menuItemer.forEach((item) => item.children[0].classList.remove("selected"));
+        clickedItem.parentElement.classList.add("selected");
+        clickedItem.classList.add("selected");
+ 
+        switch (menuItemer[0].children[0].textContent) {
+          case "Reservation Schedule":
+            handleResidentAction(selection);
+            break;
+          case "Inventory Management":
+            handleStaffAction(selection);
+            break;
+          default:
+            handleMaintenanceAction(selection);
+            break;
+        }
+      }
+
+      function handleResidentAction(action) {
+        switch (action) {
+          case 0:
+            schedule.onreadystatechange = scheduleDynam;
+            schedule.open("GET","reservations.php",true);
+            schedule.send();
+            break;
+          case 1:
+            getPage("waitList.html");
+            break;
+          case 2:
+            getPage("ticket.html");
+            break;
+          case 3:
+            getPage("maintenance.html");
+            break;
+        }
+      }
+
+      function handleMaintenanceAction(action){
+        switch(action){
+            case 0:
+                break;
+            case 1:
+                getPage("machineStatus.php");
+                break;
+        }
+      }
+
+      function handleStaffAction(action){
+        switch(action){
+            case 0:
+                break;
+            case 1:
+                getPage("maintenance.html");
+                break;
+            case 2:
+                break;
+        }
+      }
+
+
+      function setupEventListeners() {
+        const days = document.querySelectorAll(".days");
+        days.forEach(day => {
+            day.addEventListener("click", function () {
+                let dayName = this.textContent.trim();
+                let dayNumber = daysOfWeek[dayName];
+                const scheduleRequest = new XMLHttpRequest();
+                scheduleRequest.open('POST', 'reservations.php', true);
+                scheduleRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                scheduleRequest.onreadystatechange = function () {
+                    if (scheduleRequest.readyState === XMLHttpRequest.DONE) {
+                        if (scheduleRequest.status === 200) {
+                            let scheduletimes = scheduleRequest.responseText;
+                            console.log(scheduletimes);
+                            dynamic.innerHTML = scheduletimes;
+                            setupEventListeners(); // Re-attach event listeners
+                        } else {
+                            alert("Error Occurred");
+                        }
+                    }
+                };
+                let datas = "selectedDay=" + encodeURIComponent(dayNumber);
+                scheduleRequest.send(datas);
+            });
+        });
+    
+        const timeSlots = document.querySelectorAll(".timeSlot");
+        timeSlots.forEach(slot => {
+            slot.addEventListener("click", function () {
+                const fixed = this;
+                let timeSlot = this.textContent.trim();
+    
+                //Find the span element to determine which machine in the database's timeslot
+                let machineFinder = findMachineElement(this);
+                let machine = machineFinder.querySelector('span').textContent;
+    
+                let timeRequest = new XMLHttpRequest();
+                timeRequest.open('POST', 'timeSlot.php', true);
+                timeRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    
+                timeRequest.onreadystatechange = function () {
+                    if (timeRequest.readyState === XMLHttpRequest.DONE) {
+                        if (timeRequest.status === 200) {
+                            let scheduler = timeRequest.responseText;
+                            if (scheduler == "success") {
+                                alert("Timeslot Reserved")
+                                fixed.classList.add('selected');
+                            } else if (scheduler == "unavailable") {
+                                alert("Timeslot Not Available");
+                            } else if (scheduler = "limited") {
+                                alert("Timeslot Reservation Limit Reached")
+                            } else {
+                                console.log(scheduler);
+                                alert("Failed To Reserve Timeslot.");
+                            }
+                        } else {
+                            alert("Error Occurred");
+                        }
+                    }
+                };
+    
+                let data = "timeslot=" + encodeURIComponent(timeSlot) + "&machine=" + encodeURIComponent(machine);
+                timeRequest.send(data);
+            });
+        });
+    }
+
 });
 
 
