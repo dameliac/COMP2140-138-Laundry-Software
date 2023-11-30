@@ -12,30 +12,38 @@
 <body>
     <div class="container">
         <h2>Laundry Inventory Form</h2>
-        <form id="inventoryForm">
-            <label for="productName">Product Name:</label>
-            <input type="text" id="productName" name="productName" required>
-            <br>
-            <label for="cyclesUsed">Number of Cycles:</label>
-            <input type="number" id="cyclesUsed" name="cyclesUsed" required>
-            <br>
-            <br>
-            <button type="button" onclick="updateInventory()">Update Inventory</button>
-        </form>
 
-        <table id="inventoryTable">
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Inventory table rows will be added here dynamically -->
-            </tbody>
-        </table>
+      <section id="tableSection">
+          <h3>Inventory Table</h3>
+          <table id="inventoryTable">
+              <thead>
+                  <tr>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Default products and quantities will be added here -->
+              </tbody>
+          </table>
+      </section>
     </div>
-
+    <br>
+    <br>
+    <div class="container2">
+      <section id="formSection">
+          <h3>Update Inventory</h3>
+          <form id="inventoryForm">
+              <label for="productName">Product Name:</label>
+              <input type="text" id="productName" name="productName" required>
+              <br>
+              <label for="cyclesUsed">Number of Cycles:</label>
+              <input type="number" id="cyclesUsed" name="cyclesUsed" required>
+              <br>
+              <button type="button" onclick="updateInventory()">Update Inventory</button>
+          </form>
+      </section>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
