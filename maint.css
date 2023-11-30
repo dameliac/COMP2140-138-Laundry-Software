@@ -31,7 +31,25 @@ h1{
 h2{
     font-family: 'Lilita One','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:cadetblue;
-    font-size: 24px;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p{
+    font-family: "Lilita One";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+pre{
+    font-family: "Lilita One";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 #maintenance-form {

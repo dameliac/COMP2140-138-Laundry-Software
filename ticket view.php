@@ -51,7 +51,7 @@ if ($machineQuery->execute()){
 <body>
     <h1>138 DORMITORY LAUNDRY</h1>
     <div class="ticketBox">
-        <?php for($ticket = 0; $ticket < $ticketNumber; $ticket++):?>
+        <?php for($ticket = 0; $ticket < $iter; $ticket++):?>
             <div class="container">
                 <h2>Queue Ticket</h2>
                 <div class = "machine">

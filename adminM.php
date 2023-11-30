@@ -15,7 +15,7 @@
 
   if (file_exists($file)) {
     $submittedIssues = file_get_contents($file);
-    echo "<p>Submitted Issues:</p>";
+    echo "<p>Submitted Issues</p>";
     echo "<pre>$submittedIssues</pre>";
   } else {
     echo "<p>No submitted issues yet.</p>";

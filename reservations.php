@@ -48,6 +48,7 @@ function getMachineStatus($machine) {
 }
 
 
+
 ?>
 <!--Sets Up the days of the week in reservation schedule using an array and checking which day is selected to assign selected class to it-->
 <div id="daySelector">

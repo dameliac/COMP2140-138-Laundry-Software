@@ -14,14 +14,12 @@
         const correspondingSpan = findSpanByTextContent(selectedOptionText);
         const parentDiv = correspondingSpan.parentElement;
         const machineImage = parentDiv.querySelector('img');
-        if (/*data.includes('red')*/data =="red") {
+        if (data.includes('red')) {
             correspondingSpan.parentElement.classList.remove('Available');
             machineImage.src = "washingred.png";
-            console.log(data);
-        } else if(/*data.includes("green")*/data =="green") {
+        } else if(data.includes("green")) {
             correspondingSpan.parentElement.classList.add('Available');
             machineImage.src = "washing.png";
-            console.log(data);
         }
         else{
             console.log(data);
