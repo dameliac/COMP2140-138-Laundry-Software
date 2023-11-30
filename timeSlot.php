@@ -81,5 +81,35 @@ function checkLimit($user){
         }
     }    
 }
+if ($row != null && $row["user_name"] == null){
+    $username = $_SESSION['userName'];
+
+    if(checkLimit($username)){
+        $updateQuery = $mysqli->prepare("UPDATE reservations SET user_name = ? WHERE machine = ? AND timeslot = ? AND day = ?");
+        $updateQuery->bind_param("ssss",$username,$machinery,$timeslot24,$selectedDay);
+
+        if ($updateQuery->execute()){
+            // Send success response along with the time until the reservation
+            $timeUntilReservation = calculateTimeUntilReservation($timeslot12);
+            echo json_encode(array("status" => "success", "timeUntilReservation" => $timeUntilReservation));
+        }
+        else{
+            echo json_encode(array("status" => "failure"));
+        }
+        $updateQuery->close();
+    }
+    else{
+        echo json_encode(array("status" => "limited"));
+    }
+}
+else{
+    echo json_encode(array("status" => "unavailable"));
+}
+
+function calculateTimeUntilReservation($timeslot){
+    $reservationTime = strtotime($timeslot);
+    $currentTime = time();
+    return $reservationTime - $currentTime;
+}
 $mysqli->close();
 ?>

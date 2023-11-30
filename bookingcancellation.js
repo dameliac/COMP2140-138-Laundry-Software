@@ -1,32 +1,48 @@
-// function confirmCancellation(){
-//     var confirmationMessage = confirm ("Are you sure you want to cancel?");
+document.addEventListener("DOMContentLoaded",function(){
+    console.log("Work");
+})
 
-//     if (confirmationMessage){
-//         cancelBooking();
-//     }
-//         else {
-//             alert("Reservation is cancelled");
-//         }
-// } 
-
-window.addEventListener("load", (event) => {
-    const Form= document.querySelector("form");
-    const msg= document.querySelector(".message");
-
-    Form.addEventListener("submit", function(e){
-        e.preventDefault();
-
-        // const emailadd= document.getElementById("email").value; 
-        const bookingID = document.getElementById("bookingID").value;
-        
-        if (bookingID !== "") {
-            msg.textContent = "Are you sure you want to cancel?";
-
-            // bookingID.value = "";
-            document.getElementById("bookingID").value = "";
+        function canceller(event) {
+        // Check if the clicked element has the class "sideLinks" and the text content is "cancel reservation"
+            const cancelSlots = document.querySelectorAll(".timeSlotted");
+            cancelSlots.forEach(slot => {
+                slot.addEventListener("click", function () {
+                    const triumph = this;
+                    const slotInfo = this.textContent.split(' ');
+                    const time = slotInfo[0];
+                    const machine = slotInfo[1];
+                    const machineNumber = slotInfo[2];
+                    const day = slotInfo[3];
+                    console.log("Clicked:", machine);
+                    let cancelRequest = new XMLHttpRequest();
+                    cancelRequest.open('POST','cancel.php',true);
+                    cancelRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                    cancelRequest.onreadystatechange = function () {
+                        if (cancelRequest.readyState === XMLHttpRequest.DONE) {
+                            if (cancelRequest.status === 200) {
+                                let opps = cancelRequest.responseText;
+                                if (opps == "success") {
+                                    triumph.classList.add('Unavailable');
+                                    alert("Reservation cancelled");
+                                }
+                                else{
+                                    console.log(opps);
+                                }
+                            }
+                        }      
+                    }
+            
+                    let trifecta = "time="+encodeURIComponent(time) + "&machine="+encodeURIComponent(machine + " " + machineNumber) + "&day="+encodeURIComponent(day);
+                    cancelRequest.send(trifecta);
+                })
+            })
         }
-        else {
-            msg.textContent = "Reservation is cancelled";
-        }
-    });
-});
+
+
+//Which Timeslots do you wish to cancel
+//list the timeslots selected
+//click on the timeslot to cancel
+//are you sure message 
+//followed by yes
+//reduce assigment by 1
+//remove username from timeslot selected

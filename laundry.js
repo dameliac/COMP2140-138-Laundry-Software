@@ -134,7 +134,10 @@ document.addEventListener("DOMContentLoaded", function() {
             getPage("ticket view.php");
             break;
           case 3:
-            getPage("maintenance.html");
+            getPage("maintenance.php");
+            break;
+          case 4:
+            getPage("bookingcancellation.php");
             break;
         }
       }
@@ -142,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
       function handleMaintenanceAction(action){
         switch(action){
             case 0:
+                getPage("adminM.php");
                 break;
             case 1:
                 getPage("machineStatus.php");
@@ -154,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
             case 0:
                 break;
             case 1:
-                getPage("maintenance.html");
+                getPage("maintenance.php");
                 break;
             case 2:
                 break;
