@@ -8,9 +8,10 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-
+date_default_timezone_set('America/New_York');
 $currentDay = date('w');
 $currentHour = date('H');
+
 
 
 $query = $mysqli->prepare("SELECT id, machine, timeslot, user_name FROM reservations WHERE user_name = ? AND day = ?");
@@ -41,7 +42,7 @@ if ($nameQuery){
     }
 }
 
-$machineQuery = $mysqli->prepare("SELECT id, machine, timeslot, day, user_name FROM reservations WHERE machine = ? AND day = ? AND user_name IS NOT NULL");
+$machineQuery = $mysqli->prepare("SELECT id, machine, HOUR(timeslot) as hour, day, user_name FROM reservations WHERE machine = ? AND day = ? AND user_name IS NOT NULL");
 
 $machineQuery->bind_param("ss", $row["machine"], $currentDay);
 
@@ -50,7 +51,7 @@ if ($machineQuery->execute()) {
     $waitlist = array();
     $nowServing = array();
     while ($rows = $result->fetch_assoc()) {
-        $status = ($rows['timeslot'] === $currentHour) ? "Now Serving" : "In Waiting";
+        $status = (intval($rows['hour']) === intval($currentHour)) ? "Now Serving" : "In Waiting";
         $personWaiting = array(
             'ticketNumber' => "A" . $rows['id'],
             'name' => $usernames[$rows['user_name']]['firstname'] . " " . $usernames[$rows['user_name']]['lastname'],

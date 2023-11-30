@@ -1,3 +1,19 @@
+<?php
+    // Check if the form is submitted
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Collect form data
+        $issueDescription = $_POST["issue"];
+        $submissionTime = date('Y-m-d H:i:s'); // Get the current date and time
+
+        // Store the submitted issue along with the timestamp in a file
+        $file = 'submitted_issues.txt';
+        file_put_contents($file, "[$submissionTime]  $issueDescription" . PHP_EOL, FILE_APPEND);
+
+        // Set a variable to indicate successful submission
+        echo "success";
+    } 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,47 +24,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="maint.css"/>
+    <script src="maint.js"></script>
 </head>
 <body>
     <div id="maintenanceBody">
     <h1>138 Dorm Laundry System</h1>
     <h2>Maintenance Request Form</h2>
-
-    <?php
-    // Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Collect form data
-        $issueDescription = $_POST["issue_description"];
-        $submissionTime = date('Y-m-d H:i:s'); // Get the current date and time
-
-        // Store the submitted issue along with the timestamp in a file
-        $file = 'submitted_issues.txt';
-        file_put_contents($file, "[$submissionTime] $issueDescription" . PHP_EOL, FILE_APPEND);
-
-        // Set a variable to indicate successful submission
-        $submitted = true;
-    } else {
-        // Set the variable to false if the form is not submitted
-        $submitted = false;
-    }
-    ?>
     <!-- Form for users to submit issues -->
-    <form id="requestForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-      <label for="issue_description">Describe the issue:</label><br>
+    <div id="requestForm">
+      <p>Describe the issue:</p>
       <textarea id="issue_description" name="issue_description" rows="4" cols="50" required></textarea><br>
-      <button type="submit">Submit</button>
-    </form>
-
+      <button type="submit" onclick="submitForm()">Submit</button>
+    </div>
     <!-- Display confirmation message using JavaScript if the form was submitted -->
-    <script>
-        var submitted = <?php echo $submitted ? 'true' : 'false'; ?>;
-        if (submitted) {
-            document.getElementById('confirmationMessage').style.display = 'block';
-        }
-    </script>
-
     <p id="confirmationMessage" style="display: none;">Request was submitted!</p>
   </div>
-
 </body>
 </html>
