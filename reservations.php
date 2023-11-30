@@ -67,7 +67,7 @@ function getMachineStatus($machine) {
 <?php for($machine = 1; $machine <= 10; $machine++):?>
     <div class="machine">
         <?php $isAvailable = (getMachineStatus("Machine $machine")==1)?>
-        <img src="<?=$isAvailable ? "washing.png" : "washingred.png"?>" alt="Laundry washing" id="machine">
+        <img src="<?=$isAvailable ? "img\washing.png" : "img\washingred.png"?>" alt="Laundry washing" id="machine">
         <span>Machine <?=$machine;?></span>
     </div>
     <?php for($hour = 8; $hour <= 20; $hour++):?>

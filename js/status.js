@@ -16,10 +16,10 @@
         const machineImage = parentDiv.querySelector('img');
         if (data.includes('red')) {
             correspondingSpan.parentElement.classList.remove('Available');
-            machineImage.src = "washingred.png";
+            machineImage.src = "img/washingred.png";
         } else if(data.includes("green")) {
             correspondingSpan.parentElement.classList.add('Available');
-            machineImage.src = "washing.png";
+            machineImage.src = "img/washing.png";
         }
         else{
             console.log(data);

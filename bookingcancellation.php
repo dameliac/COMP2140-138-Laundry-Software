@@ -46,7 +46,7 @@ if ($infoQuery->execute()){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Cancellation</title>
-    <link rel="stylesheet" href="cancel.css"/>
+    <link rel="stylesheet" href="css\cancel.css"/>
 </head>
 <body>
     <h1>138 Dorm Laundry System</h1>
@@ -59,4 +59,4 @@ if ($infoQuery->execute()){
     </div>
 </body>
 </html>
-<script src="bookingcancellation.js"></script>
+<script src="js\bookingcancellation.js"></script>

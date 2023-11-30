@@ -3,7 +3,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url("psychedelic-paper-shapes-with-copy-space.jpg");
+    background-image: url("../img/psychedelic-paper-shapes-with-copy-space.jpg");
     background-repeat: no-repeat;
     margin: 0px;
     padding: 0px;
@@ -58,7 +58,7 @@ h1{
 }
 
 .entry:first-of-type{
-    background-image: url('user.svg');
+    background-image: url('../img/user.svg');
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: 10px center;
@@ -66,7 +66,7 @@ h1{
 }
 
 .entry:last-of-type{
-    background-image: url('lock.svg');
+    background-image: url('../img/lock.svg');
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: 10px center;

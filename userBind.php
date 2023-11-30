@@ -24,8 +24,8 @@ if ($query) {
 $mysqli->close();
 ?>
 
-<img src="closeButton.png" alt="Close Button" id="close">
-<img src="profile.svg" alt="profile pic" id="profile">
+<img src="img\closeButton.png" alt="Close Button" id="close">
+<img src="img\profile.svg" alt="profile pic" id="profile">
 <p><?=$firstname . " " . $lastname?></p>
 <?php if($usertype=="resident"): ?>
     <div class="sideLinks"><a href="base.html">Reservation Schedule</a></div>
