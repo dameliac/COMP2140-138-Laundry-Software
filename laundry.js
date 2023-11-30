@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
             schedule.send();
             break;
           case 1:
-            getPage("waitList.html");
+            getPage("waitlist display.php");
             break;
           case 2:
             getPage("ticket view.php");

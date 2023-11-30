@@ -23,32 +23,45 @@ if ($query->execute()) {
         $ticketNumber = $row["id"];
     }
     else{
+        $ticketNumber = null;
     }
 
 }
 
+$nameQuery = $mysqli->query("SELECT firstname, lastname, username FROM dorm");
 
-$machineQuery = $mysqli->prepare("SELECT id, machine, timeslot, day, user_name FROM reservations WHERE machine = ? AND day = ? ORDER BY ABS(TIMESTAMPDIFF(MINUTE, timeslot, ?))");
-$currentHourRef = &$currentHour; 
-$machineQuery->bind_param("sss", $row["machine"], $currentDay, $currentHourRef);
+if ($nameQuery){
+    $usernames = array();
+
+    while ($rower = $nameQuery->fetch_assoc()) {
+        $username = $rower['username'];
+        $firstname = $rower['firstname'];
+        $lastname = $rower['lastname'];
+        $usernames[$username] = array('firstname' => $firstname, 'lastname' => $lastname);
+    }
+}
+
+$machineQuery = $mysqli->prepare("SELECT id, machine, timeslot, day, user_name FROM reservations WHERE machine = ? AND day = ? AND user_name IS NOT NULL");
+
+$machineQuery->bind_param("ss", $row["machine"], $currentDay);
 
 if ($machineQuery->execute()) {
     $result = $machineQuery->get_result();
     $waitlist = array();
     $nowServing = array();
     while ($rows = $result->fetch_assoc()) {
-        $status = ($rows['user_name'] === $user) ? "Now Serving" : "In Waiting";
-        $entry = array(
+        $status = ($rows['timeslot'] === $currentHour) ? "Now Serving" : "In Waiting";
+        $personWaiting = array(
             'ticketNumber' => $rows['id'],
-            'name' => $rows['user_name'],
+            'name' => $usernames[$rows['user_name']]['firstname'] . " " . $usernames[$rows['user_name']]['lastname'],
             'machine' => $rows['machine'],
             'status' => $status,
         );
 
         if ($status === "Now Serving") {
-            $nowServing[] = $entry;
+            $nowServing[] = $personWaiting;
         } else {
-            $waitlist[] = $entry;
+            $waitlist[] = $personWaiting;
         }
     }
 }
@@ -64,7 +77,6 @@ if ($machineQuery->execute()) {
     <title>Waitlist Display</title>
     <link rel="icon" type="image/logo" href="laundry logo.png">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
 </head>
 <body>
 
@@ -82,12 +94,12 @@ if ($machineQuery->execute()) {
                 </tr>
             </thead>
             <tbody id="serving">
-                <?php foreach ($nowServing as $entry):?>
+                <?php foreach ($nowServing as $personWaiting):?>
                     <tr>
-                        <td><?=$entry['ticketNumber']?></td>
-                        <td><?=$entry['name']?></td>
-                        <td><?=$entry['machine']?></td>
-                        <td><?=$entry['status']?></td>
+                        <td><?=$personWaiting['ticketNumber']?></td>
+                        <td><?=$personWaiting['name']?></td>
+                        <td><?=$personWaiting['machine']?></td>
+                        <td><?=$personWaiting['status']?></td>
                     </tr>
                 <?php endforeach;?>
             </tbody>
@@ -104,12 +116,12 @@ if ($machineQuery->execute()) {
                 </tr>
             </thead>
             <tbody id="Waitlist">
-                <?php foreach($waitlist as $entry):?>
+                <?php foreach($waitlist as $personWaiting):?>
                     <tr>
-                        <td><?=$entry['ticketNumber']?></td>
-                        <td><?=$entry['name']?></td>
-                        <td><?=$entry['machine']?></td>
-                        <td><?=$entry['status']?></td>
+                        <td><?=$personWaiting['ticketNumber']?></td>
+                        <td><?=$personWaiting['name']?></td>
+                        <td><?=$personWaiting['machine']?></td>
+                        <td><?=$personWaiting['status']?></td>
                     </tr>
                 <?php endforeach;?>
             </tbody>
