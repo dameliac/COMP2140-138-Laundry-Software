@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     sider.style.left ="-300px";
                 }
                 closers.addEventListener("click",closer);
+                handleBasePage();
             }
             else{
                 alert("A mistake was made with the code.");
@@ -70,9 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
     menuList.send();
 
 
-    schedule.onreadystatechange = scheduleDynam;
-    schedule.open("GET","reservations.php",true);
-    schedule.send();
+
 
 
 
@@ -100,6 +99,24 @@ document.addEventListener("DOMContentLoaded", function() {
     return element;
     }
 
+    function handleBasePage(){
+        const menuItemer = document.querySelectorAll(".sideLinks");
+        switch (menuItemer[0].children[0].textContent) {
+          case "Reservation Schedule":
+            schedule.onreadystatechange = scheduleDynam;
+            schedule.open("GET","reservations.php",true);
+            schedule.send();        
+            break;
+          case "Ticket Overview":
+            getPage("ticket view.php"); 
+            break;
+          default:
+            getPage("adminM.php")
+            break;
+        }
+    }
+
+
     function handleMenuItemClick(clickedItem,selection) {
         const menuItemer = document.querySelectorAll(".sideLinks");
         menuItemer.forEach((item) => item.classList.remove("selected"));
@@ -111,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
           case "Reservation Schedule":
             handleResidentAction(selection);
             break;
-          case "Inventory Management":
+          case "Ticket Overview":
             handleStaffAction(selection);
             break;
           default:
@@ -156,11 +173,10 @@ document.addEventListener("DOMContentLoaded", function() {
       function handleStaffAction(action){
         switch(action){
             case 0:
+                getPage("ticket view.php")
                 break;
             case 1:
                 getPage("maintenance.php");
-                break;
-            case 2:
                 break;
         }
       }

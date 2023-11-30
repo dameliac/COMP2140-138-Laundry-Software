@@ -47,6 +47,7 @@ INSERT INTO `dorm` (`username`, `password`, `firstname`, `lastname`, `usertype`,
 ('123', '$2y$10$1ILtmY.cEKFRAwHR97SYWeLvB2gC70oJTiNDVuhWaS9edo7OgJK6y', 'Josh', 'Johnson', 'resident', 1),
 ('789', '$2y$10$2S9Q0e7YrzCNBO2OTcDMHuJf2rJQUsKM3mGT6xJJMR5o/m.CKnqfi', 'Julio', 'Estabon', 'staff', 0),
 ('456', '$2y$10$tX39EIdwLzWa5bNNK728mOn14n8adf/YQ891PF.e0yJPCnF27UPg.', 'Senku', 'Ishigami', 'maintenance', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -76,6 +77,7 @@ INSERT INTO `machine status` (`id`, `machineName`, `machineStatus`) VALUES
 (10, 'Machine 10', 1);
 
 -- --------------------------------------------------------
+
 --
 -- Table structure for table `reservations`
 --
@@ -1040,4 +1042,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

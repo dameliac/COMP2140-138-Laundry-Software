@@ -19,7 +19,7 @@ if ($query) {
             $query->bind_result($firstname,$lastname,$usertype);
             $query->fetch();
         }
-    }
+        }
 }
 $mysqli->close();
 ?>
@@ -34,9 +34,8 @@ $mysqli->close();
     <div class="sideLinks"><a href="maintenance.html">Maintenance Request</a></div>
     <div class="sideLinks"><a href="bookingcancellation.php">Cancel Reservation</a></div>
 <?php elseif($usertype=="staff"):?>
-    <div class="sideLinks"><a href="inventory.html">Inventory Management</a></div>
-    <div class="sideLinks"><a href="adminM.php">Maintenance Report</a></div>
     <div class="sideLinks"><a href="ticket.html">Ticket Overview</a></div>
+    <div class="sideLinks"><a href="adminM.php">Maintenance Report</a></div>
 <?php else:?>
     <div class="sideLinks"><a href="Request.html">Request Overview</a></div>
     <div class="sideLinks"><a href="machineStatus.php">Machine Statuses</a></div>
