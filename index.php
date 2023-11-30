@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <form method="post" action="login.php">
+    <form method="post" action="UserAuthentication.php">
         <div id="loginMenu">
             <h1>Sign In</h1>
                 <input type="text" name="userName" class="entry" placeholder="Username">

@@ -30,7 +30,7 @@
 </head>
 <body>
     <div class="machineDisplayer">
-        <form class="machineDisplay" action="status.php" method="post" onsubmit="machineStatusChange(event)">
+        <form class="machineDisplay" action="MachineStatusUpdateHandler.php" method="post" onsubmit="machineStatusChange(event)">
             <select name="machine" id="machineSelect">
                 <Option value="Machine 1">
                     Machine 1
@@ -58,7 +58,7 @@
             <?php endfor;?>
             <button type="submit" class="machineButtons">Toggle Availability</button>
         </form>
-        <form class="machineDisplay" action="status.php" method="post" onsubmit="machineStatusChange(event)">
+        <form class="machineDisplay" action="MachineStatusUpdateHandler.php" method="post" onsubmit="machineStatusChange(event)">
             <select name="machine" id="machineSelect">
                 <Option value="Machine 6">
                     Machine 6

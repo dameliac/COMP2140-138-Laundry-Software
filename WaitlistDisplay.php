@@ -8,12 +8,13 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
+//sets date to local time and get current hour and time
 date_default_timezone_set('America/New_York');
 $currentDay = date('w');
 $currentHour = date('H');
 
 
-
+//Get current users selected machines and timeslot (if any) for current day from database
 $query = $mysqli->prepare("SELECT id, machine, timeslot, user_name FROM reservations WHERE user_name = ? AND day = ?");
 $query->bind_param("ss", $user, $currentDay);
 
@@ -28,7 +29,7 @@ if ($query->execute()) {
     }
 
 }
-
+//Get names of all users in the dorm and their associated username
 $nameQuery = $mysqli->query("SELECT firstname, lastname, username FROM dorm");
 
 if ($nameQuery){
@@ -41,7 +42,7 @@ if ($nameQuery){
         $usernames[$username] = array('firstname' => $firstname, 'lastname' => $lastname);
     }
 }
-
+//Get the ticket number, user name, and machine of all users assigned to the same machine on the current day
 $machineQuery = $mysqli->prepare("SELECT id, machine, HOUR(timeslot) as hour, day, user_name FROM reservations WHERE machine = ? AND day = ? AND user_name IS NOT NULL");
 
 $machineQuery->bind_param("ss", $row["machine"], $currentDay);
@@ -69,7 +70,7 @@ if ($machineQuery->execute()) {
 ?>
 
 
-
+<!--Displays list of people in order of closeness to time of available machine selected by the current user -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

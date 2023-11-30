@@ -1,6 +1,6 @@
     function machineStatusChange(event) {
         event.preventDefault(); 
-        fetch('status.php', {
+        fetch('MachineStatusUpdateHandler.php', {
             method: 'POST',
             body: new FormData(event.target),
         })

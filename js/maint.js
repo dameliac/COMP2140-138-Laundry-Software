@@ -1,7 +1,7 @@
 function submitForm() {
     const issueDescription = document.getElementById('issue_description').value;
     const formalRequest = new XMLHttpRequest;
-    formalRequest.open('POST', 'maintenance.php', true);
+    formalRequest.open('POST', 'MaintenanceRequest.php', true);
     formalRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     formalRequest.onreadystatechange = function () {

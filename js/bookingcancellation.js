@@ -15,13 +15,13 @@ document.addEventListener("DOMContentLoaded",function(){
                     const day = slotInfo[3];
                     console.log("Clicked:", machine);
                     let cancelRequest = new XMLHttpRequest();
-                    cancelRequest.open('POST','cancel.php',true);
+                    cancelRequest.open('POST','BookingCancellation.php',true);
                     cancelRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                     cancelRequest.onreadystatechange = function () {
                         if (cancelRequest.readyState === XMLHttpRequest.DONE) {
                             if (cancelRequest.status === 200) {
                                 let opps = cancelRequest.responseText;
-                                if (opps == "success") {
+                                if (opps.includes("success")) {
                                     triumph.classList.add('Unavailable');
                                     alert("Reservation cancelled");
                                 }

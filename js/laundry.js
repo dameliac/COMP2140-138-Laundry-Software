@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     menuList.onreadystatechange = menuLister;
-    menuList.open("GET", "userBind.php", true);
+    menuList.open("GET", "RoleManagement.php", true);
     menuList.send();
 
 
@@ -104,14 +104,14 @@ document.addEventListener("DOMContentLoaded", function() {
         switch (menuItemer[0].children[0].textContent) {
           case "Reservation Schedule":
             schedule.onreadystatechange = scheduleDynam;
-            schedule.open("GET","reservations.php",true);
+            schedule.open("GET","MachineBooking.php",true);
             schedule.send();        
             break;
           case "Ticket Overview":
-            getPage("ticket view.php"); 
+            getPage("TicketGenerator.php"); 
             break;
           default:
-            getPage("adminM.php")
+            getPage("MaintenanceRequestView.php")
             break;
         }
     }
@@ -141,20 +141,20 @@ document.addEventListener("DOMContentLoaded", function() {
         switch (action) {
           case 0:
             schedule.onreadystatechange = scheduleDynam;
-            schedule.open("GET","reservations.php",true);
+            schedule.open("GET","MachineBooking.php",true);
             schedule.send();
             break;
           case 1:
-            getPage("waitlist display.php");
+            getPage("WaitlistDisplay.php");
             break;
           case 2:
-            getPage("ticket view.php");
+            getPage("TicketGenerator.php");
             break;
           case 3:
-            getPage("maintenance.php");
+            getPage("MaintenanceRequest.php");
             break;
           case 4:
-            getPage("bookingcancellation.php");
+            getPage("BookingCancellation.php");
             break;
         }
       }
@@ -162,10 +162,10 @@ document.addEventListener("DOMContentLoaded", function() {
       function handleMaintenanceAction(action){
         switch(action){
             case 0:
-                getPage("adminM.php");
+                getPage("MaintenanceRequestView.php");
                 break;
             case 1:
-                getPage("machineStatus.php");
+                getPage("MachineStatusUpdate.php");
                 break;
         }
       }
@@ -173,10 +173,10 @@ document.addEventListener("DOMContentLoaded", function() {
       function handleStaffAction(action){
         switch(action){
             case 0:
-                getPage("ticket view.php")
+                getPage("TicketGenerator.php")
                 break;
             case 1:
-                getPage("maintenance.php");
+                getPage("MaintenanceRequest.php");
                 break;
         }
       }
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 let dayName = this.textContent.trim();
                 let dayNumber = daysOfWeek[dayName];
                 const scheduleRequest = new XMLHttpRequest();
-                scheduleRequest.open('POST', 'reservations.php', true);
+                scheduleRequest.open('POST', 'MachineBooking.php', true);
                 scheduleRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 scheduleRequest.onreadystatechange = function () {
                     if (scheduleRequest.readyState === XMLHttpRequest.DONE) {
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 let machine = machineFinder.querySelector('span').textContent;
     
                 let timeRequest = new XMLHttpRequest();
-                timeRequest.open('POST', 'timeSlot.php', true);
+                timeRequest.open('POST', 'MachineBookingHandler.php', true);
                 timeRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     
                 timeRequest.onreadystatechange = function () {
