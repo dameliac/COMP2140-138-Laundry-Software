@@ -10,7 +10,7 @@
 
   <h2>Submission Confirmation</h2>
 
-  <?php
+<?php
   // Check if the form is submitted
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Collect form data
@@ -20,8 +20,9 @@
     // Store the submitted issue along with the timestamp in a file
     $file = 'submitted_issues.txt';
     file_put_contents($file, "[$submissionTime] $issueDescription" . PHP_EOL, FILE_APPEND);
-
+  }
+?>
   <p>Your issue has been successfully submitted. Thank you for reaching out!</p>
-
 </body>
 </html>
+  

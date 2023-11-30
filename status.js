@@ -13,30 +13,21 @@
         console.log('Selected Option:', selectedOptionText);
         const correspondingSpan = findSpanByTextContent(selectedOptionText);
         const parentDiv = correspondingSpan.parentElement;
-        const commentSection = parentDiv.querySelector('.commentSection');
         const machineImage = parentDiv.querySelector('img');
-        if (data.includes('red')) {
+        if (/*data.includes('red')*/data =="red") {
             correspondingSpan.parentElement.classList.remove('Available');
             machineImage.src = "washingred.png";
-            commentSection.style.display = "flex";
-        } else {
+            console.log(data);
+        } else if(/*data.includes("green")*/data =="green") {
             correspondingSpan.parentElement.classList.add('Available');
             machineImage.src = "washing.png";
-            commentSection.style.display = "none";
+            console.log(data);
+        }
+        else{
+            console.log(data);
         }
         })
     }
-
-
-        function submitComment(machineNumber) {
-            var commentSection = document.querySelector('.commentSection[data-machine-number="' + machineNumber + '"]');
-            var commentsDisplay = commentSection.querySelector('.commentsDisplay');
-            var commentsTextarea = commentSection.querySelector('textarea');
-            var commentText = commentsTextarea.value;
-            commentsDisplay.innerHTML += '<p>' + commentText + '</p>';
-            commentsTextarea.value = '';
-        }
-
 
         function findSpanByTextContent(textContent) {
             const machineSpans = document.querySelectorAll('.Machine span');

@@ -1,9 +1,34 @@
 <?php
+// Retrive the session variables set at login
 session_start();
+
+//access database 
 $mysqli = new mysqli("localhost", "root", "", "138users");
 
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
+}
+
+//function that reduces the assignment of all users assigned to the machine thats out of service 
+function reduceAssignment($failMachine) {
+    global $mysqli;
+    // get all users assigned to the specified machine
+    $usersQuery = $mysqli->prepare("SELECT username FROM dorm WHERE assignments > 0 AND username IN (SELECT user_name FROM reservations WHERE machine = ?)");
+    $usersQuery->bind_param("s", $failMachine);
+
+    if ($usersQuery->execute()) {
+        $result = $usersQuery->get_result();
+        //var_dump($result);
+        // Iterate through users and reduce their assignments
+        while ($row = $result->fetch_assoc()) {
+            $user = $row['username'];
+            var_dump($user);
+            var_dump($row['username']);
+            $NegativeQuery = $mysqli->prepare("UPDATE dorm SET assignments = assignments - 1 WHERE username = ?");
+            $NegativeQuery->bind_param("s", $user);
+            $NegativeQuery->execute();
+        }
+    }
 }
 
 if (isset($_POST['machine'])){
@@ -32,6 +57,7 @@ if (isset($_POST['machine'])){
                 $updateQuery = $mysqli->prepare("UPDATE `machine status` SET machineStatus = ? WHERE machineName = ?");
                 $updateQuery->bind_param("ss", $updateStatus, $machine);
                 if ($updateQuery->execute()) {
+                    reduceAssignment($machine);
                     echo "red";
                 }
                 else echo "fail";

@@ -52,7 +52,7 @@ if ($machineQuery->execute()) {
     while ($rows = $result->fetch_assoc()) {
         $status = ($rows['timeslot'] === $currentHour) ? "Now Serving" : "In Waiting";
         $personWaiting = array(
-            'ticketNumber' => $rows['id'],
+            'ticketNumber' => "A" . $rows['id'],
             'name' => $usernames[$rows['user_name']]['firstname'] . " " . $usernames[$rows['user_name']]['lastname'],
             'machine' => $rows['machine'],
             'status' => $status,

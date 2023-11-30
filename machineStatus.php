@@ -54,13 +54,6 @@
                 <div class="Machine<?=$isAvailable ? " Available" : ""?>">
                     <img src="<?=$isAvailable ? "washing.png" : "washingred.png"?>" alt="Laundry washing" id="machine">
                     <span>Machine <?=$machine;?></span>
-                    <div class="commentSection" data-machine-number="<?=$machine?>">
-                        <?php if(!$isAvailable): ?>
-                            <textarea name="comments" placeholder="Enter your comments here"></textarea>
-                            <button type="button" onclick="submitComment(<?=$machine?>)">Submit Comment</button>
-                        <?php endif; ?>
-                        <div class="commentsDisplay"></div>
-                    </div>
                 </div>
             <?php endfor;?>
             <button type="submit" class="machineButtons">Toggle Availability</button>
@@ -89,13 +82,6 @@
                 <div class="Machine">
                     <img src="<?=$isAvailable ? "washing.png" : "washingred.png"?>" alt="Laundry washing" id="machine">
                     <span>Machine <?=$machine;?></span>
-                    <div class="commentSection" data-machine-number="<?=$machine?>">
-                        <?php if(!$isAvailable): ?>
-                            <textarea name="comments" placeholder="Enter your comments here"></textarea>
-                            <button type="button" onclick="submitComment(<?=$machine?>)">Submit Comment</button>
-                        <?php endif; ?>
-                        <div class="commentsDisplay"></div>
-                    </div>
                 </div>
             <?php endfor;?>
             <button type="submit"  class="machineButtons">Toggle Availability</button>
