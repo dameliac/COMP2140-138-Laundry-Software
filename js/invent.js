@@ -48,6 +48,7 @@ function updateInventory() {
 
         // Clear the form
         document.getElementById("inventoryForm").reset();
+        toggle();
     } else {
         alert("Please enter valid data.");
     }
@@ -69,6 +70,16 @@ function updateTable() {
         cell1.innerText = product.productName;
         cell2.innerText = product.quantity;
     });
+}
+
+function toggle(){
+    let blurcontent =document.getElementById("display");
+    blurcontent.classList.toggle('active');
+    let popup =document.getElementById("form");
+    popup.classList.toggle('active');
+    
+    //document.getElementsByClassName("container2")[0].style.display ="block";
+
 }
 
 // Call populateTable when the script loads
