@@ -5,7 +5,7 @@
         if ($mysqli->connect_error) {
             die("Connection failed: " . $mysqli->connect_error);
         }
-        
+        //gets the machine name and status of all machines in the database and stores it in an array.
         $query = $mysqli->prepare("SELECT machineName, machineStatus FROM `machine status`");
         if ($query->execute()) {
             $result = $query->get_result();
@@ -15,7 +15,7 @@
             }
         }
 ?>
-
+<!--The statuses of each machine is displayed in the machine status page to show the maintenance staff the changes as they make it-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

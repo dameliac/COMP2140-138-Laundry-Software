@@ -8,6 +8,7 @@ $mysqli = new mysqli("localhost", "root", "", "138users");
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
+//query to get the usertype of the current user
 $typeQuery = $mysqli->prepare("SELECT usertype FROM dorm WHERE username=?");
 $typeQuery->bind_param("s",$user);
 
@@ -18,7 +19,7 @@ if($typeQuery->execute()){
 }
 
 
-
+//query to get the number of timeslots the user has reserved for the week (assignments)
 $assignmentQuery = $mysqli->prepare("SELECT assignments FROM dorm WHERE username=?");
 $assignmentQuery->bind_param("s",$user);
 
@@ -27,7 +28,7 @@ if ($assignmentQuery->execute()){
     $row = $result->fetch_assoc();
     $ticketNumber = $row["assignments"];
 }
-
+//query to get the rest of ticket information for the user for each timeslot reserved
 $machineQuery = $mysqli->prepare("SELECT id, machine, timeslot, day FROM reservations WHERE user_name = ?");
 $machineQuery->bind_param("s",$user);
 
@@ -47,7 +48,7 @@ if ($machineQuery->execute()){
     }   
 }
 
-
+//query to get the ticket information for every user of the system
 $adminQuery = $mysqli->prepare("SELECT id, machine, timeslot, day FROM reservations WHERE user_name is NOT NULL");
 
 
@@ -68,6 +69,7 @@ if ($adminQuery->execute()){
 }
 
 ?>
+<!--Choose if resident or staff what tickets will be displayed to the user.-->
 <?php if ($usertype=="resident"):?>
     <!DOCTYPE html>
     <html lang="en">

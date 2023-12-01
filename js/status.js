@@ -1,3 +1,9 @@
+    /*
+     * Post the machine 1 span to update handler that checks 
+     * database for status and changes status returning the 
+     * text red or green to change the image displayed in machine status
+     * based on the database change
+     */
     function machineStatusChange(event) {
         event.preventDefault(); 
         fetch('MachineStatusUpdateHandler.php', {
@@ -26,7 +32,7 @@
         }
         })
     }
-
+        //find the machnine span that is equivalent to the selection text content
         function findSpanByTextContent(textContent) {
             const machineSpans = document.querySelectorAll('.Machine span');
             for (const span of machineSpans) {

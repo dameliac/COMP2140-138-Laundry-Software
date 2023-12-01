@@ -12,6 +12,7 @@
 
 </head>
 <body>
+    <!--user login form that accepts login information and post it to the UserAuthentication file-->
     <form method="post" action="UserAuthentication.php">
         <div id="loginMenu">
             <h1>Sign In</h1>

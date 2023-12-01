@@ -9,7 +9,7 @@ if ($mysqli->connect_error){
 }
 
 $username = $_SESSION['userName'];
-
+//get the usertype as well as firstname and lastname of current user
 $query = $mysqli->prepare("SELECT firstname, lastname, usertype FROM dorm WHERE username = ?");
 if ($query) {
     $query->bind_param("s", $username);
@@ -23,7 +23,7 @@ if ($query) {
 }
 $mysqli->close();
 ?>
-
+<!--based on usertype the menu is loaded with different functions to be used by each user-->
 <img src="img\closeButton.png" alt="Close Button" id="close">
 <img src="img\profile.svg" alt="profile pic" id="profile">
 <p><?=$firstname . " " . $lastname?></p>
