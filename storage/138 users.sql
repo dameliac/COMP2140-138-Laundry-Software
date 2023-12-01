@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2023 at 07:00 PM
+-- Generation Time: Nov 30, 2023 at 08:16 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,9 +44,11 @@ CREATE TABLE `dorm` (
 --
 
 INSERT INTO `dorm` (`username`, `password`, `firstname`, `lastname`, `usertype`, `assignments`) VALUES
-('123', '$2y$10$1ILtmY.cEKFRAwHR97SYWeLvB2gC70oJTiNDVuhWaS9edo7OgJK6y', 'Josh', 'Johnson', 'resident', 1),
+('123', '$2y$10$1ILtmY.cEKFRAwHR97SYWeLvB2gC70oJTiNDVuhWaS9edo7OgJK6y', 'Josh', 'Johnson', 'resident', 2),
 ('789', '$2y$10$2S9Q0e7YrzCNBO2OTcDMHuJf2rJQUsKM3mGT6xJJMR5o/m.CKnqfi', 'Julio', 'Estabon', 'staff', 0),
-('456', '$2y$10$tX39EIdwLzWa5bNNK728mOn14n8adf/YQ891PF.e0yJPCnF27UPg.', 'Senku', 'Ishigami', 'maintenance', 2);
+('456', '$2y$10$tX39EIdwLzWa5bNNK728mOn14n8adf/YQ891PF.e0yJPCnF27UPg.', 'Senku', 'Ishigami', 'maintenance', 0),
+('1234', '$2y$10$Yh16Hz2mwwHb8xmningJvu.sX.nziuTBfEUnyWDQi7frzmXWaXe7O', 'Andrew', 'Holness', 'resident', 1),
+('4567', '$2y$10$cGJzsfB0Jc4Ihth0jAqbse8vgM2z1XQKAxd12LhThN1SCrBP4/wWK', 'Bob', 'Marley', 'resident', 0);
 
 -- --------------------------------------------------------
 
@@ -75,6 +77,18 @@ INSERT INTO `machine status` (`id`, `machineName`, `machineStatus`) VALUES
 (8, 'Machine 8', 1),
 (9, 'Machine 9', 1),
 (10, 'Machine 10', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `id` int(11) NOT NULL,
+  `issue` text NOT NULL,
+  `submission_time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -687,7 +701,7 @@ INSERT INTO `reservations` (`id`, `machine`, `timeslot`, `day`, `user_name`) VAL
 (1238, 'Machine 10', '14:00:00', 4, NULL),
 (1239, 'Machine 1', '15:00:00', 4, NULL),
 (1240, 'Machine 2', '15:00:00', 4, NULL),
-(1241, 'Machine 3', '15:00:00', 4, NULL),
+(1241, 'Machine 3', '15:00:00', 4, '123'),
 (1242, 'Machine 4', '15:00:00', 4, NULL),
 (1243, 'Machine 5', '15:00:00', 4, NULL),
 (1244, 'Machine 6', '15:00:00', 4, NULL),
@@ -706,7 +720,7 @@ INSERT INTO `reservations` (`id`, `machine`, `timeslot`, `day`, `user_name`) VAL
 (1257, 'Machine 9', '16:00:00', 4, NULL),
 (1258, 'Machine 10', '16:00:00', 4, NULL),
 (1259, 'Machine 1', '17:00:00', 4, NULL),
-(1260, 'Machine 2', '17:00:00', 4, NULL),
+(1260, 'Machine 2', '17:00:00', 4, '123'),
 (1261, 'Machine 3', '17:00:00', 4, NULL),
 (1262, 'Machine 4', '17:00:00', 4, NULL),
 (1263, 'Machine 5', '17:00:00', 4, NULL),
@@ -1017,6 +1031,12 @@ ALTER TABLE `machine status`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reservations`
 --
 ALTER TABLE `reservations`
@@ -1031,6 +1051,12 @@ ALTER TABLE `reservations`
 --
 ALTER TABLE `machine status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `reservations`
