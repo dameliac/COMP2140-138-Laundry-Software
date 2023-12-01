@@ -49,7 +49,7 @@ if ($machineQuery->execute()){
 }
 
 //query to get the ticket information for every user of the system
-$adminQuery = $mysqli->prepare("SELECT id, machine, timeslot, day FROM reservations WHERE user_name is NOT NULL");
+$adminQuery = $mysqli->prepare("SELECT id, machine, timeslot, day, user_name FROM reservations WHERE user_name is NOT NULL");
 
 
 if ($adminQuery->execute()){
@@ -64,6 +64,7 @@ if ($adminQuery->execute()){
         $time[$i] = $rowing['timeslot']; 
         $day[$i] = $rowing['day'];
         $userID[$i] = $rowing['id'];
+        $users[$i] = $rowing['user_name'];
         $i++;
     }   
 }
@@ -126,7 +127,7 @@ if ($adminQuery->execute()){
                     <h2>Queue Ticket</h2>
                     <div class = "machine">
                         <div id="user"> 
-                            <h3 id="id">User ID: <?=$userID[$ticket]?></h3>
+                            <h3 id="id">User ID: <?=$users[$ticket]?></h3>
                             <h3 id = "date">Day: <?=$day[$ticket]?></h3></div>
                             <p id="ticket"><strong>Ticket ID:</strong></p>
                             <p id="dec1">********************************************</p>

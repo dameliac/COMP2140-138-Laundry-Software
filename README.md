@@ -28,9 +28,6 @@ The 138 Student Living Dorms represent the latest student housing options on the
     php -S localhost:8000
     ```
 
-### Configuration
-- Open `config.php` and update any necessary configuration settings such as database credentials.
-
 #### Using MySQL Client (e.g. phpMyAdmin)
 1. Open your phpMyAdmin client.
 2. Navigate to the import tab at the top of the GUI.

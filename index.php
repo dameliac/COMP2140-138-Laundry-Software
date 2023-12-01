@@ -25,13 +25,13 @@
     session_start();
     if (isset($_SESSION['passwordWrongs'])){
         if ($_SESSION['passwordWrongs'] == true){
-            echo "<script> alert('Incorrect Password'); </script>";
+            echo "<script> alert('Incorrect login information'); </script>";
             $_SESSION['passwordWrongs'] = false;
         }
     }
     if (isset($_SESSION['userWrongs'])){
         if ($_SESSION['userWrongs'] == true){
-            echo "<script> alert('Incorrect Username'); </script>";
+            echo "<script> alert('Incorrect login information'); </script>";
             $_SESSION['userWrongs'] = false;
         }
     }
