@@ -11,7 +11,7 @@
 
   <?php
   // Read and display submitted issues from the file
-  $file = 'submitted_issues.txt';
+  $file = 'storage/submitted_issues.txt';
 
   if (file_exists($file)) {
     $submittedIssues = file_get_contents($file);

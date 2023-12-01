@@ -31,10 +31,11 @@ The 138 Student Living Dorms represent the latest student housing options on the
 ### Configuration
 - Open `config.php` and update any necessary configuration settings such as database credentials.
 
-#### Using MySQL Client (e.g., phpMyAdmin)
+#### Using MySQL Client (e.g. phpMyAdmin)
 1. Open your phpMyAdmin client.
 2. Navigate to the import tab at the top of the GUI.
 3. Import the SQL database file [storage/138users.sql](storage/138users.sql).
+4. For demo purposes all usernames are the same as passwords for every user included in the sql file.
 
 ### Running the Application
 1. Open your web browser and go to [http://localhost:8000](http://localhost:8000).
